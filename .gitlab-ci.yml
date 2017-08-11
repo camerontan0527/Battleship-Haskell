@@ -1,0 +1,45 @@
+image: schteeben/anu:ass01
+
+stages:
+    - build
+    - test
+    
+Compilation:
+    stage: build
+    tags:
+        - comp1100
+    script:
+        - cd Program
+        - ghc Main.hs -O2
+        
+Doctest:
+    stage: test
+    tags:
+        - comp1100
+    script:
+        - cd Program
+        - sh /Testing/Ass01/Doctest.sh
+        
+Board Generation:
+    stage: test
+    tags:
+        - comp1100
+    script:
+        - cd Program
+        - sh /Testing/Ass01/GenBoard.sh
+        
+Play Mode:
+    stage: test
+    tags:
+        - comp1100
+    script:
+        - cd Program
+        - sh /Testing/Ass01/Playing.sh
+        
+Comprehensive:
+    stage: test
+    tags:
+        - comp1100
+    script:
+        - cd Program
+        - sh /Testing/Ass01/Comprehensive.sh
