@@ -81,10 +81,10 @@ shipLength = undefined
 -- occupied by the ship.
 getCoords :: Coordinate -> Direction -> Integer -> [Coordinate]
 getCoords (i, j) dir l = case dir of
-    Down  -> map (\x -> (x, j)) [i .. (i + l - 1)]
-    Right -> map (\x -> (i, x)) [j .. (j + l - 1)]
-    Up    -> map (\x -> (x, j)) [i, (i - 1) .. (i - l + 1)]
-    Left  -> map (\x -> (i, x)) [j, (j - 1) .. (j - l + 1)]
+    Down  -> map (\x -> (i, x)) [i .. (i + l - 1)]
+    Right -> map (\x -> (x, j)) [j .. (j + l - 1)]
+    Up    -> map (\x -> (i, x)) [i, (i - 1) .. (i - l + 1)]
+    Left  -> map (\x -> (x, j)) [j, (j - 1) .. (j - l + 1)]
     
 -- getNeighbours returns a 9-element list containing
 -- coordinates around the given coordinate and itself.
