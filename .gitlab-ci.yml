@@ -9,7 +9,6 @@ Compilation:
     tags:
         - comp1100
     script:
-        - cd Program
         - ghc Main.hs -O2
         
 Doctest:
@@ -17,7 +16,6 @@ Doctest:
     tags:
         - comp1100
     script:
-        - cd Program
         - sh /Testing/Ass01/Doctest.sh
         
 Board Generation:
@@ -25,7 +23,6 @@ Board Generation:
     tags:
         - comp1100
     script:
-        - cd Program
         - sh /Testing/Ass01/GenBoard.sh
         
 Play Mode:
@@ -33,7 +30,6 @@ Play Mode:
     tags:
         - comp1100
     script:
-        - cd Program
         - sh /Testing/Ass01/Playing.sh
         
 Comprehensive:
@@ -41,5 +37,4 @@ Comprehensive:
     tags:
         - comp1100
     script:
-        - cd Program
         - sh /Testing/Ass01/Comprehensive.sh
