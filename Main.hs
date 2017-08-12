@@ -1,15 +1,24 @@
+-- Code based on framework designed by Steven X. Han from
+-- the Australian National University, who has granted
+-- permission for the usage of their work by the cohort
+-- enrolled in the course COMP1100 in 2017 Semester 2 for
+-- education purposes only. No commercial usage is allowed
+-- without the explicit permission from the original author. 
+
 module Main where
 
 import Prelude hiding (Left, Right)
 import Battleship
 import System.Random
 
+-- main queries for playing mode.
 main :: IO ()
 main = do
     putStrLn "Type f for full mode, g to generate a board only, p to play only."
     args <- getLine
     processArgs args
         
+-- processArgs switches between game modes.
 processArgs :: String -> IO ()
 processArgs s
     | s == "f" = genShips (GenShips (replicate 10 (replicate 10 False)) [] False) startGame
@@ -23,9 +32,12 @@ processArgs s
 printShipsGrid :: Ships -> IO ()
 printShipsGrid s = putStrLn $ show s
     
+-- startGame initialises the game with all cells as Unchecked
 startGame :: Ships -> IO ()
 startGame s = game (State (replicate 10 (replicate 10 Unchecked)) s Playing 0)
     
+-- genShips generates random information and recursively feed
+-- into placeShip function, along with a few safety checks.
 genShips :: GenShips -> (Ships -> IO ()) -> IO ()
 genShips gs run
     | finished gs                   = run $ gsShips gs
@@ -59,6 +71,7 @@ genShips gs run
             | x == 4    = Right
             | otherwise = error "getDirection Integer out of bound."
 
+-- game recursively iterates the State to play the game.
 game :: State -> IO ()
 game s 
     | numMoves s <= 20 = do
