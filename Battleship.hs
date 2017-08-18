@@ -97,7 +97,7 @@ coordInBound = undefined
 -- isShipAtCoord determines if there is a ship already placed
 -- at the coord.
 isShipAtCoord :: Coordinate -> Ships -> Bool
-isShipAtCoord (x, y) grid = grid !! (fromIntegral x) !! (fromIntegral y)
+isShipAtCoord (x, y) grid = grid !! (fromIntegral y) !! (fromIntegral x)
 
 placeShip :: GenShips -> Coordinate -> Direction -> ShipType -> GenShips
 placeShip = undefined
