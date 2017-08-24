@@ -6,10 +6,10 @@
 -- without the explicit permission from the original author. 
 --
 -- Assignment completed by:
--- Name    :
--- UID     :
--- Tutor   :
--- Lab Time: 
+-- Name    : Renhao Tan
+-- UID     : u6211458
+-- Tutor   : Lizzie Parkinson
+-- Lab Time: Thursday 11 am - 1 pm
 
 module Battleship where
 
@@ -104,3 +104,6 @@ placeShip = undefined
 
 transitionState :: State -> Coordinate -> State
 transitionState = undefined
+
+oneMoreMove :: State -> State
+oneMoreMove (State b s c m) = State b s c (m + 1)
