@@ -112,13 +112,13 @@ isShipAtCoord (x, y) grid = grid !! (fromIntegral y) !! (fromIntegral x)
 placeShip :: GenShips -> Coordinate -> Direction -> ShipType -> GenShips
 placeShip gs (x, y) dir st
     | length (existingShips gs) == 5  = GenShips (gsShips gs) (existingShips gs) True
-    | validPlacement gs (x, y) dir st = placeShip (GenShips (gsShips gs) (updateList (existingShips gs) (length (existingShips gs)) st) (finished gs)) (x, y) dir st
-    | otherwise                       = placeShip gs (x, y) dir st
+    | validPlacement gs (x, y) dir st = GenShips (gsShips gs) (updateList (existingShips gs) (length (existingShips gs)) st) (finished gs)
+    | otherwise                       = gs
 
 transitionState :: State -> Coordinate -> State
 transitionState state (x, y)
     | judgeCondition (condition state) = state
-    | (numMoves state) == 20 = State (board state) (ships state) Lost 20
+    | numMoves state == 20 = State (board state) (ships state) Lost 20
     | (x < 0 || x > 9) || (y < 0 || y > 9) = state
     | ((ships state) !! (fromIntegral y)) !! (fromIntegral x) && length (countHit (board state) 0) == 17 = State (updateList (board state) (fromIntegral y) (updateList ((board state) !! (fromIntegral y)) (fromIntegral x) Hit)) (ships state) Won (numMoves state)
     | ((ships state) !! (fromIntegral y)) !! (fromIntegral x) = State (updateList (board state) (fromIntegral y) (updateList ((board state) !! (fromIntegral y)) (fromIntegral x) Hit)) (ships state) (condition state) (numMoves state)
