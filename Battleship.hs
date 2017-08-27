@@ -120,7 +120,7 @@ transitionState state (x, y)
     | judgeCondition (condition state) = state
     | (numMoves state) == 20 = State (board state) (ships state) Lost 20
     | (x < 0 || x > 9) || (y < 0 || y > 9) = state
-    | ((ships state) !! (fromIntegral y)) !! (fromIntegral x) && length (countHit (board state) 0) == 4 = State (updateList (board state) (fromIntegral y) (updateList ((board state) !! (fromIntegral y)) (fromIntegral x) Hit)) (ships state) Won (numMoves state)
+    | ((ships state) !! (fromIntegral y)) !! (fromIntegral x) && length (countHit (board state) 0) == 17 = State (updateList (board state) (fromIntegral y) (updateList ((board state) !! (fromIntegral y)) (fromIntegral x) Hit)) (ships state) Won (numMoves state)
     | ((ships state) !! (fromIntegral y)) !! (fromIntegral x) = State (updateList (board state) (fromIntegral y) (updateList ((board state) !! (fromIntegral y)) (fromIntegral x) Hit)) (ships state) (condition state) (numMoves state)
     | not (((ships state) !! (fromIntegral y)) !! (fromIntegral x)) = oneMoreMove (State (updateList (board state) (fromIntegral y) (updateList ((board state) !! (fromIntegral y)) (fromIntegral x) Miss)) (ships state) (condition state) (numMoves state))
 
