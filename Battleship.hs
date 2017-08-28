@@ -113,7 +113,7 @@ placeShip :: GenShips -> Coordinate -> Direction -> ShipType -> GenShips
 placeShip gs (x, y) dir st
     | length (existingShips gs) == 5  = GenShips (gsShips gs) (existingShips gs) True
     | validPlacement gs (x, y) dir st = GenShips (gsShips gs) (updateList (existingShips gs) (length (existingShips gs)) st) (finished gs)
-    | otherwise                       = gs
+    | otherwise                       = GenShips (gsShips gs) (existingShips gs) (finished gs)
 
 transitionState :: State -> Coordinate -> State
 transitionState state (x, y)
